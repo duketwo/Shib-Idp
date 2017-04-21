@@ -1,0 +1,12 @@
+version: "3.1"
+
+services:
+  idp:
+    container_name: "idp"
+    build: ./idp
+    ports:
+      - '80:80'
+      - '443:4443'
+    #volumes:
+    #  - './data:/data'
+    restart: always
