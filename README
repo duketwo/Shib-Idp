@@ -1,0 +1,6 @@
+### README ###
+
+1. Initiale Konfiguration erstellen:
+	cd ./config/idp	
+	docker-compose build
+	docker run -it -v $(pwd):/ext-mount --rm idp_idp  init-idp.sh	
