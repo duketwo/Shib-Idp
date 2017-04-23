@@ -14,3 +14,18 @@
 	
 3. Docker-compose Umgebungsvariablen anpassen:
 	JETTY_BACKCHANNEL_SSL_KEYSTORE_PASSWORD: <Backchannel-Passwort aus Schritt 1>
+
+4. Mit phpldapadmin einen Nutzer mit Attributen erstellen.
+	-> Child entry anlegen. Template: "Courier Mail: Account"
+	
+5. ldap.properties, idp.properties konfigurieren
+
+6. Metadatenprovider hinzufügen
+	a) Lokaler datei:
+		<MetadataProvider id="sp-lr.shib"  xsi:type="FilesystemMetadataProvider" metadataFile="%{idp.home}/metadata/sp-metadata.xml"/>
+		
+	b) Remote via HTTPS:
+		
+
+7. Attribute resolver konfigurieren
+8. Attribute filter konfigurieren
