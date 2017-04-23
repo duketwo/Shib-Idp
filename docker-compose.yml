@@ -10,6 +10,6 @@ services:
     volumes:
       - './config/idp/:/external-mount/'
     environment:
-      JETTY_BROWSER_SSL_KEYSTORE_PASSWORD: secret
+      JETTY_BROWSER_SSL_KEYSTORE_PASSWORD: ""
       JETTY_BACKCHANNEL_SSL_KEYSTORE_PASSWORD: backchannel
     restart: always
