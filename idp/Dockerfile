@@ -8,6 +8,12 @@ FROM debian:latest
 	ENV idp_version 3.3.1
 	ENV idp_hash 8bd852dcdc7e6729ee645c0374a3c476b152fa24506fb86ffec33dfd190e607c
 	ENV dta_hash 2f547074b06952b94c35631398f36746820a7697
+	
+	ENV JETTY_HOME=/opt/jetty-home \
+    JETTY_BASE=/opt/shib-jetty-base \
+    JETTY_MAX_HEAP=2048m \
+    JETTY_BROWSER_SSL_KEYSTORE_PASSWORD=changeme \
+    JETTY_BACKCHANNEL_SSL_KEYSTORE_PASSWORD=changeme
 
 # Debug
 	RUN set -x;

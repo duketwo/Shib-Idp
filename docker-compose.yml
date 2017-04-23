@@ -7,6 +7,9 @@ services:
     ports:
       - '80:80'
       - '443:4443'
-    #volumes:
-    #  - './data:/data'
+    volumes:
+      - './config/idp/:/external-mount/'
+    environment:
+      JETTY_BROWSER_SSL_KEYSTORE_PASSWORD: secret
+      JETTY_BACKCHANNEL_SSL_KEYSTORE_PASSWORD: backchannel
     restart: always

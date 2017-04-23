@@ -4,6 +4,53 @@ set -x
 export JAVA_HOME=$(readlink -f /usr/bin/java | sed "s:bin/java::")
 export PATH=$PATH:$JAVA_HOME/bin
 
+if [ -d /external-mount/conf/ ];
+then
+	echo "Importing config."
+	if [ -d /external-mount/conf/ ];
+	then
+		echo "Updading the Shibboleth IdP conf."
+		cp -R /external-mount/conf/ /opt/shibboleth-idp/
+	fi
+
+	if [ -d /external-mount/credentials/ ];
+	then
+		echo "Updating the Shibboleth credentials."
+		cp -R /external-mount/credentials/ /opt/shibboleth-idp/
+	fi
+
+	if [ -d /external-mount/metadata/ ];
+	then
+		echo "Updating the Shibboleth metadata."
+		cp -R /external-mount/metadata/ /opt/shibboleth-idp/
+	fi
+
+	if [ -d /external-mount/webapp/ ];
+	then
+		echo "Updating the Shibboleth webapp artifacts."
+		cp -R /external-mount/webapp/ /opt/shibboleth-idp/webapp/
+		
+			if [ -d /external-mount/views/ ];
+			then
+				echo "Updating the Shibboleth webapp artifacts."
+				cp -R /external-mount/views/ /opt/shibboleth-idp/views/
+			fi
+
+		echo "Rebuilding the idp.war file"
+		cd /opt/shibboleth-idp
+		bin/build.sh
+	fi
+
+	if [ -d /external-mount/keystore ];
+	then
+		echo "Updating the Jetty keystore."
+		cp /external-mount/keystore /opt/iam-jetty-base/etc/keystore
+	fi
+else 
+	echo "No configuration found please create a configuration and add the volume mount accordingly."
+	exit 1
+fi
+
 if [ -e "/opt/shibboleth-idp/ext-conf/idp-secrets.properties" ]; then
   export JETTY_BACKCHANNEL_SSL_KEYSTORE_PASSWORD=`gawk 'match($0,/^jetty.backchannel.sslContext.keyStorePassword=\s?(.*)\s?$/, a) {print a[1]}' /opt/shibboleth-idp/ext-conf/idp-secrets.properties`
   export JETTY_BROWSER_SSL_KEYSTORE_PASSWORD=`gawk 'match($0,/^jetty\.sslContext\.keyStorePassword=\s?(.*)\s?$/, a) {print a[1]}' /opt/shibboleth-idp/ext-conf/idp-secrets.properties`
