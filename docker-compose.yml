@@ -5,11 +5,35 @@ services:
     container_name: "idp"
     build: ./idp
     ports:
-      - '80:80'
       - '443:4443'
+      - '8443:8443'
     volumes:
       - './config/idp/:/external-mount/'
     environment:
       JETTY_BROWSER_SSL_KEYSTORE_PASSWORD: ""
       JETTY_BACKCHANNEL_SSL_KEYSTORE_PASSWORD: backchannel
+    restart: always
+
+  ldap:
+    container_name: "ldap"
+    build: ./ldap
+    ports:
+      - '389:389'
+    volumes:
+      - './config/ldap:/var/lib/ldap'
+    environment:
+      LDAP_DOMAIN: "shib"
+      LDAP_ORGANISATION: "Shibboleth United Ltd."
+      LDAP_ROOTPASS: "toor"
+    restart: always
+
+  phpldapadmin:
+    container_name: "phpldapadmin"
+    build: ./phpldapadmin
+    ports:
+      - '80:80'
+    environment:
+      LDAP_SERVER_HOST: "ldap"
+      LDAP_SERVER_PORT: "389"
+      UNIQUE_ATTRS: "mail,uid,uidNumbers"
     restart: always
