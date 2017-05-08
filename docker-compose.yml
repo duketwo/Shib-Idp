@@ -4,11 +4,11 @@ services:
   idp:
     container_name: "idp"
     build: ./idp
-    ports:
+#    ports:
 #    - '443:4443'
 #     - '8080:8080'
-     - '8443:8443'
-     - '4443:4443'
+#     - '8443:8443'
+#     - '4443:4443'
     volumes:
       - './config/idp/:/external-mount/'
     environment:
@@ -45,7 +45,11 @@ services:
     container_name: 'haproxy'
     image: haproxy
     #environment:
-    network_mode: "host"
+    #network_mode: "host"
+    ports:
+     - '80:80'
+     - '443:443'
+     - '8443:8443'
     volumes:
       - './haproxy/:/usr/local/etc/haproxy/'
 
