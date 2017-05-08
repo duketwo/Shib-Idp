@@ -33,7 +33,10 @@
 
 
 
-
-
 ADDITIONAL:
-Letsencrypt cert -> pk12: openssl pkcs12 -export -out certificate.pfx -inkey privkey.pem -in cert.pem -certfile chain.pem
+Letsencrypt cert -> 
+	k12: openssl pkcs12 -export -out certificate.pfx -inkey privkey.pem -in cert.pem -certfile chain.pem
+Letsencrypt cert -> haproxy pem: 
+	cd haproxy/certs
+	DOMAIN='yourdomain.net' bash -c 'cat /etc/letsencrypt/live/$DOMAIN/fullchain.pem /etc/letsencrypt/live/$DOMAIN/privkey.pem > $DOMAIN.pem'
+	chmod -R go-rwx .

@@ -35,3 +35,4 @@ vendor/pkg/
 hack/integration-cli-on-swarm/integration-cli-on-swarm
 config/idp/
 config/ldap/
+haproxy/certs/
