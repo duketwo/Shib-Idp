@@ -6,12 +6,12 @@ services:
     build: ./idp
     ports:
       - '443:4443'
-      - '8443:8443'
+#      - '8443:8443'
     volumes:
       - './config/idp/:/external-mount/'
     environment:
       JETTY_BROWSER_SSL_KEYSTORE_PASSWORD: ""
-      JETTY_BACKCHANNEL_SSL_KEYSTORE_PASSWORD: backchannel
+      JETTY_BACKCHANNEL_SSL_KEYSTORE_PASSWORD: back
     restart: always
 
   ldap:
@@ -31,9 +31,19 @@ services:
     container_name: "phpldapadmin"
     build: ./phpldapadmin
     ports:
-      - '80:80'
+      - '88:80'
     environment:
       LDAP_SERVER_HOST: "ldap"
       LDAP_SERVER_PORT: "389"
       UNIQUE_ATTRS: "mail,uid,uidNumbers"
     restart: always
+  haproxy:
+    restart: always
+    #privileged: true
+    container_name: 'haproxy'
+    image: haproxy
+    #environment:
+    network_mode: "host"
+    volumes:
+      - './haproxy/:/usr/local/etc/haproxy/'
+

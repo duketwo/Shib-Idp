@@ -29,3 +29,11 @@
 
 7. Attribute resolver konfigurieren
 8. Attribute filter konfigurieren
+
+
+
+
+
+
+ADDITIONAL:
+Letsencrypt cert -> pk12: openssl pkcs12 -export -out certificate.pfx -inkey privkey.pem -in cert.pem -certfile chain.pem

@@ -28,12 +28,12 @@ then
 	if [ -d /external-mount/webapp/ ];
 	then
 		echo "Updating the Shibboleth webapp artifacts."
-		cp -R /external-mount/webapp/ /opt/shibboleth-idp/webapp/
+		cp -R /external-mount/webapp/ /opt/shibboleth-idp/
 		
 			if [ -d /external-mount/views/ ];
 			then
 				echo "Updating the Shibboleth webapp artifacts."
-				cp -R /external-mount/views/ /opt/shibboleth-idp/views/
+				cp -R /external-mount/views/ /opt/shibboleth-idp/
 			fi
 
 		echo "Rebuilding the idp.war file"
