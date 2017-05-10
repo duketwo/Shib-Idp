@@ -10,6 +10,11 @@ services:
       JETTY_BROWSER_SSL_KEYSTORE_PASSWORD: ""
       JETTY_BACKCHANNEL_SSL_KEYSTORE_PASSWORD: back
     restart: always
+    depends_on:
+      - "ldap"
+      - "phpldapadmin"
+      - "haproxy"
+      - "httpd-metadata"
 
   ldap:
     container_name: "ldap"
@@ -34,6 +39,8 @@ services:
       LDAP_SERVER_PORT: "389"
       UNIQUE_ATTRS: "mail,uid,uidNumbers"
     restart: always
+    depends_on:
+      - "ldap"
   haproxy:
     restart: always
     #privileged: true
@@ -48,7 +55,7 @@ services:
     volumes:
       - './haproxy/:/usr/local/etc/haproxy/'
       
-  apache:
+  httpd-metadata:
    image: php:7.0-apache
    container_name: 'httpd-metadata'
    volumes:
