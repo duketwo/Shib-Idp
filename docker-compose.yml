@@ -4,11 +4,6 @@ services:
   idp:
     container_name: "idp"
     build: ./idp
-#    ports:
-#    - '443:4443'
-#     - '8080:8080'
-#     - '8443:8443'
-#     - '4443:4443'
     volumes:
       - './config/idp/:/external-mount/'
     environment:
@@ -52,4 +47,11 @@ services:
      - '8443:8443'
     volumes:
       - './haproxy/:/usr/local/etc/haproxy/'
+      
+  apache:
+   image: php:7.0-apache
+   container_name: 'httpd-metadata'
+   volumes:
+      - './httpd-metadata/html/:/var/www/html/'
+   restart: always
 
