@@ -16,19 +16,6 @@ services:
       - "haproxy"
       - "httpd-metadata"
 
-  # ldap:
-    # container_name: "ldap"
-    # build: ./ldap
-    # ports:
-      # - '389:389'
-    # volumes:
-      # - './config/ldap:/var/lib/ldap'
-    # environment:
-      # LDAP_DOMAIN: "shib"
-      # LDAP_ORGANISATION: "Shibboleth United Ltd."
-      # LDAP_ROOTPASS: "toor"
-    # restart: always
-    
   ldap:
    build: ./ldap
    container_name: "ldap"
