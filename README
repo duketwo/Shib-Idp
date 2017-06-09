@@ -40,3 +40,5 @@ Letsencrypt cert -> haproxy pem:
 	cd haproxy/certs
 	DOMAIN='yourdomain.net' bash -c 'cat /etc/letsencrypt/live/$DOMAIN/fullchain.pem /etc/letsencrypt/live/$DOMAIN/privkey.pem > $DOMAIN.pem'
 	chmod -R go-rwx .
+	LDAP user: cn=admin,dc=shib
+	LDAP pw: toor
