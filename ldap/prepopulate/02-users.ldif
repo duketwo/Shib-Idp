@@ -1,0 +1,27 @@
+dn: uid=lriedel,ou=people,dc=shib
+cn: Larissa Riedel
+sn: Larissa
+gidnumber: 10000
+homedirectory: /home/users/lriedel
+objectClass: posixAccount
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+loginShell: /bin/bash
+uid: lriedel
+uidnumber: 1001
+userpassword: lriedel
+
+dn: uid=dbader,ou=people,dc=shib
+cn: Daniel Bader
+sn: Daniel
+gidnumber: 10000
+homedirectory: /home/users/dbader
+objectClass: posixAccount
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+loginShell: /bin/bash
+uid: dbader
+uidnumber: 1002
+userpassword: dbader

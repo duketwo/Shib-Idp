@@ -1,0 +1,9 @@
+dn: cn=students,ou=groups,dc=shib
+cn: students
+objectClass: groupofnames
+member: uid=lriedel,ou=people,dc=shib
+
+dn: cn=professors,ou=groups,dc=shib
+cn: professors
+objectClass: groupofnames
+member: uid=dbader,ou=people,dc=shib

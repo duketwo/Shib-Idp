@@ -1,32 +1,23 @@
-FROM phusion/baseimage:0.9.8
-ENV HOME /root
+FROM debian:jessie
 
-# Disable SSH
-RUN rm -rf /etc/service/sshd /etc/my_init.d/00_regen_ssh_host_keys.sh
+ENV OPENLDAP_VERSION 2.4.40
 
-# Use baseimage-docker's init system.
-CMD ["/sbin/my_init"]
+RUN apt-get update && \
+    DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y \
+        slapd=${OPENLDAP_VERSION}* && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 
-# Configure apt
-RUN echo 'deb http://us.archive.ubuntu.com/ubuntu/ precise universe' >> /etc/apt/sources.list
-RUN apt-get -y update
+RUN mv /etc/ldap /etc/ldap.dist
 
-# Install slapd
-RUN LC_ALL=C DEBIAN_FRONTEND=noninteractive apt-get install -y slapd
+COPY entrypoint.sh /entrypoint.sh
 
-# Default configuration: can be overridden at the docker command line
-ENV LDAP_ROOTPASS toor
-ENV LDAP_ORGANISATION Acme Widgets Inc.
-ENV LDAP_DOMAIN example.com
+RUN chmod +x /entrypoint.sh
 
 EXPOSE 389
 
-RUN mkdir /etc/service/slapd
-ADD slapd.sh /etc/service/slapd/run
-RUN chmod +x /etc/service/slapd/run
+VOLUME ["/etc/ldap", "/var/lib/ldap"]
 
-# To store the data outside the container, mount /var/lib/ldap as a data volume
+ENTRYPOINT ["/entrypoint.sh"]
 
-RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-
-# vim:ts=8:noet:
+CMD ["slapd", "-d", "32768", "-u", "openldap", "-g", "openldap"]

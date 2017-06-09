@@ -1,0 +1,7 @@
+dn: ou=people,dc=shib
+objectclass: organizationalUnit
+ou: People
+
+dn: ou=groups,dc=shib
+objectclass: organizationalUnit
+ou: Groups
