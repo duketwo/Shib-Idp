@@ -24,5 +24,10 @@ cp -r webapp/images/ /ext-mount/webapp/
 cp -r webapp/js/ /ext-mount/webapp/
 rm -r /ext-mount/views/user-prefs.js
 
-echo "A basic Shibboleth IdP config and UI has been copied to ./(assuming the default volume mapping was used)."
+echo "A self signed certificate for the browser will now be created: "
+
+openssl req  -nodes -new -x509  -keyout /ext-mount/credentials/idp-browser.key -out /ext-mount/credentials/idp-browser.crt
+openssl pkcs12 -passout pass: -inkey /ext-mount/credentials/idp-browser.key -in /ext-mount/credentials/idp-browser.crt -export -out /ext-mount/credentials/idp-browser.p12
+
+echo "A basic Shibboleth IdP config and UI has been copied to ./"
 echo "Most files, if not being customized can be removed from what was exported/the local Docker image and baseline files will be used."

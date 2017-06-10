@@ -5,40 +5,42 @@
 	docker-compose build
 	docker run -it -v $(pwd):/ext-mount --rm idp_idp  init-idp.sh	# Backchannel + Cookie Passwort notieren!
 	
-2. Selbst signiertes TLS-Zertifikat erstellen für Jetty:
-	cd ./config/idp/credentials
-	#openssl genrsa -aes128 -out jetty.key
-	#openssl req -new -x509 -newkey rsa:2048 -sha256 -key jetty.key -out jetty.crt
-	openssl req  -nodes -new -x509  -keyout jetty.key -out jetty.crt
-	openssl pkcs12 -passout pass: -inkey jetty.key -in jetty.crt -export -out idp-browser.p12
-	
-3. Docker-compose Umgebungsvariablen anpassen:
+2. Docker-compose Umgebungsvariablen anpassen:
 	JETTY_BACKCHANNEL_SSL_KEYSTORE_PASSWORD: <Backchannel-Passwort aus Schritt 1>
 
-4. Mit phpldapadmin einen Nutzer mit Attributen erstellen.
+3. Mit phpldapadmin einen Nutzer mit Attributen erstellen.
 	-> Child entry anlegen. Template: "Courier Mail: Account"
 	
-5. ldap.properties, idp.properties konfigurieren
+4. ldap.properties, idp.properties konfigurieren
 
-6. Metadatenprovider hinzufügen
+5. Metadatenprovider hinzufügen
 	a) Lokaler datei:
 		<MetadataProvider id="sp-lr.shib"  xsi:type="FilesystemMetadataProvider" metadataFile="%{idp.home}/metadata/sp-metadata.xml"/>
 		
 	b) Remote via HTTPS:
 		
 
-7. Attribute resolver konfigurieren
-8. Attribute filter konfigurieren
-
-
+6. Attribute resolver konfigurieren
+7. Attribute filter konfigurieren
 
 
 ADDITIONAL:
 Letsencrypt cert -> p12: 
+
 	openssl pkcs12 -export -out idp-browser.p12 -inkey privkey.pem -in cert.pem -certfile chain.pem
-Letsencrypt cert -> haproxy pem: 
+	Letsencrypt cert -> haproxy pem: 
 	cd haproxy/certs
 	DOMAIN='yourdomain.net' bash -c 'cat /etc/letsencrypt/live/$DOMAIN/fullchain.pem /etc/letsencrypt/live/$DOMAIN/privkey.pem > $DOMAIN.pem'
 	chmod -R go-rwx .
+	
+	LDAP credentials:
 	LDAP user: cn=admin,dc=shib
 	LDAP pw: toor
+	
+	
+	Selbst signiertes TLS-Zertifikat erstellen -> p12
+	cd ./config/idp/credentials
+	#openssl genrsa -aes128 -out jetty.key
+	#openssl req -new -x509 -newkey rsa:2048 -sha256 -key jetty.key -out jetty.crt
+	openssl req  -nodes -new -x509  -keyout jetty.key -out jetty.crt
+	openssl pkcs12 -passout pass: -inkey jetty.key -in jetty.crt -export -out idp-browser.p12
