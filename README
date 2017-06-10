@@ -3,13 +3,11 @@
 1. Initiale Konfiguration erstellen:
 	cd ./config/idp	
 	docker-compose build
-	docker run -it -v $(pwd):/ext-mount --rm idp_idp  init-idp.sh	# Backchannel + Cookie Passwort notieren!
+	docker run -it -v $(pwd):/ext-mount --rm idp_idp  init-idp.sh
+	# Backchannel + Cookie Passwort notieren!
 	
 2. Docker-compose Umgebungsvariablen anpassen:
 	JETTY_BACKCHANNEL_SSL_KEYSTORE_PASSWORD: <Backchannel-Passwort aus Schritt 1>
-
-3. Mit phpldapadmin einen Nutzer mit Attributen erstellen.
-	-> Child entry anlegen. Template: "Courier Mail: Account"
 	
 4. ldap.properties, idp.properties konfigurieren
 
