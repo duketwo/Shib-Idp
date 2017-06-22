@@ -22,44 +22,44 @@ Shib-Idp
  - Shibbleth IdP provides Single Sign-On services 
 
 ## How to use
-0. chmod +x ./init.sh
-   Ausführen von: ./init.sh
+1. Execute init.sh: ```chmod +x ./init.sh && ./init.sh```
 
-1. Initiale Konfiguration erstellen:
-	cd ./config/idp	
-	docker-compose build
-	docker run -it -v $(pwd):/ext-mount --rm idp_idp  init-idp.sh
-	Backchannel + Cookie Passwort notieren!
+2. Create initial base configuration:
+	</br>```cd ./config/idp```
+	</br>```docker-compose build```
+	</br>```docker run -it -v $(pwd):/ext-mount --rm idp_idp  init-idp.sh```
+	</br>Create a note of the backchannel and cookie password!
 	
-2. Docker-compose Umgebungsvariablen anpassen:
-	JETTY_BACKCHANNEL_SSL_KEYSTORE_PASSWORD: <Backchannel-Passwort aus Schritt 1>
+3. Edit docker-compose environment variables:
+	</br>```JETTY_BACKCHANNEL_SSL_KEYSTORE_PASSWORD: <Backchannel-Passwort from step 1>```
 	
-4. ldap.properties, idp.properties konfigurieren
+4. Configure ldap.properties, idp.properties
 
-5. Metadatenprovider hinzufügen
-	a) Lokaler datei:
-		<MetadataProvider id="sp-lr.shib"  xsi:type="FilesystemMetadataProvider" metadataFile="%{idp.home}/metadata/sp-metadata.xml"/>
-		
-	b) Remote via HTTPS:
-		
+5. Add metadatenproviders:
+<br/>5.1. From local file:
+<br/><MetadataProvider id="sp-lr.shib"  xsi:type="FilesystemMetadataProvider" metadataFile="%{idp.home}/metadata/sp-metadata.xml"/>
+<br/>5.2. Remote via HTTPS:
+<br/>	
 
-6. Attribute resolver konfigurieren
-7. Attribute filter konfigurieren
+6. Configure attribute resolver
+7. Configure attribute filter
 
 ## Cheatsheet
-Letsencrypt cert -> p12: 
+1. Letsencrypt cert -> p12: 
 	openssl pkcs12 -export -out idp-browser.p12 -inkey privkey.pem -in cert.pem -certfile chain.pem
 	
-Letsencrypt cert -> haproxy pem: 
+2. Letsencrypt cert -> haproxy pem: 
+
 	cd haproxy/certs
 	DOMAIN='yourdomain.net' bash -c 'cat /etc/letsencrypt/live/$DOMAIN/fullchain.pem /etc/letsencrypt/live/$DOMAIN/privkey.pem > $DOMAIN.pem'
 	chmod -R go-rwx .
+
 	
-LDAP credentials:
+3. LDAP credentials:
 	LDAP user: cn=admin,dc=shib
 	LDAP pw: toor
 	
-Selbst signiertes TLS-Zertifikat erstellen -> p12
+4. Create selfsigned TLS cert and convert to p12 format:
 	cd ./config/idp/credentials
 	#openssl genrsa -aes128 -out jetty.key
 	#openssl req -new -x509 -newkey rsa:2048 -sha256 -key jetty.key -out jetty.crt
