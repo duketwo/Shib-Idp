@@ -75,8 +75,9 @@ EOF
             slapadd -n0 -F /etc/ldap/slapd.d -l "/etc/ldap/schema/${schema}.ldif"
         done
     fi
-
-    if [[ -n "$SLAPD_ADDITIONAL_MODULES" ]]; then
+	
+	if [[ -n "$SLAPD_ADDITIONAL_MODULES" ]]; then
+		echo "Loading SLAPD_ADDITIONAL_MODULES."
         IFS=","; declare -a modules=($SLAPD_ADDITIONAL_MODULES); unset IFS
 
         for module in "${modules[@]}"; do
@@ -91,6 +92,17 @@ EOF
              slapadd -n0 -F /etc/ldap/slapd.d -l "$module_file"
         done
     fi
+	
+	if [[ "$first_run" == "true" ]]; then
+		echo "Loading prepopulate data."
+		if [[ -d "/etc/ldap/prepopulate" ]]; then 
+			for file in `ls /etc/ldap/prepopulate/*.ldif`; do
+				slapadd -F /etc/ldap/slapd.d -l "$file"
+			done
+		fi
+	fi
+
+
 
     chown -R openldap:openldap /etc/ldap/slapd.d/
 else
@@ -98,14 +110,6 @@ else
 
     if [ -n "${slapd_configs_in_env:+x}" ]; then
         echo "Info: Container already configured, therefore ignoring SLAPD_xxx environment variables and preseed files"
-    fi
-fi
-
-if [[ "$first_run" == "true" ]]; then
-    if [[ -d "/etc/ldap/prepopulate" ]]; then 
-        for file in `ls /etc/ldap/prepopulate/*.ldif`; do
-            slapadd -F /etc/ldap/slapd.d -l "$file"
-        done
     fi
 fi
 

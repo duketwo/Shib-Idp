@@ -62,6 +62,10 @@ Shib-Idp
 	</br>```cd ./config/idp/credentials```
 	</br>```openssl req  -nodes -new -x509  -keyout jetty.key -out jetty.crt```
 	</br>```openssl pkcs12 -passout pass: -inkey jetty.key -in jetty.crt -export -out idp-browser.p12```
+	
+5. LDAP memberof search example:
+    </br>```(&(objectClass=*)(memberOf=cn=students,ou=groups,dc=shib))```
+	</br>```(&(objectClass=*)(memberOf=cn=professors,ou=groups,dc=shib))```
 
 ## References used
 https://github.com/dinkel/docker-openldap

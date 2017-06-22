@@ -10,6 +10,8 @@ RUN apt-get update && \
 
 RUN mv /etc/ldap /etc/ldap.dist
 
+COPY modules/ /etc/ldap.dist/modules
+
 COPY entrypoint.sh /entrypoint.sh
 
 RUN chmod +x /entrypoint.sh
