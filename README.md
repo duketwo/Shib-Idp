@@ -43,6 +43,27 @@ Shib-Idp
 6. Attribute resolver konfigurieren
 7. Attribute filter konfigurieren
 
+#### Additional
+Letsencrypt cert -> p12: 
+	openssl pkcs12 -export -out idp-browser.p12 -inkey privkey.pem -in cert.pem -certfile chain.pem
+	
+Letsencrypt cert -> haproxy pem: 
+	cd haproxy/certs
+	DOMAIN='yourdomain.net' bash -c 'cat /etc/letsencrypt/live/$DOMAIN/fullchain.pem /etc/letsencrypt/live/$DOMAIN/privkey.pem > $DOMAIN.pem'
+	chmod -R go-rwx .
+	
+LDAP credentials:
+	LDAP user: cn=admin,dc=shib
+	LDAP pw: toor
+	
+	
+Selbst signiertes TLS-Zertifikat erstellen -> p12
+	cd ./config/idp/credentials
+	#openssl genrsa -aes128 -out jetty.key
+	#openssl req -new -x509 -newkey rsa:2048 -sha256 -key jetty.key -out jetty.crt
+	openssl req  -nodes -new -x509  -keyout jetty.key -out jetty.crt
+	openssl pkcs12 -passout pass: -inkey jetty.key -in jetty.crt -export -out idp-browser.p12
+
 
 
 ## License
