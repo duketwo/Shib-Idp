@@ -38,3 +38,5 @@ config/ldap/
 haproxy/certs/
 httpd-metadata/html/
 httpd-metadata/
+docker-compose.yml
+haproxy/haproxy.cfg

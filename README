@@ -1,5 +1,8 @@
 ### README ###
 
+0. chmod +x ./init.sh
+   Ausführen von: ./init.sh
+
 1. Initiale Konfiguration erstellen:
 	cd ./config/idp	
 	docker-compose build
