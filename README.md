@@ -67,7 +67,9 @@ Selbst signiertes TLS-Zertifikat erstellen -> p12
 	openssl pkcs12 -passout pass: -inkey jetty.key -in jetty.crt -export -out idp-browser.p12
 
 ## References used
-
+https://github.com/dinkel/docker-openldap
+</br>https://github.com/dinkel/docker-phpldapadmin
+</br>https://github.com/Unicon/shibboleth-idp-dockerized
 
 ## License
 
