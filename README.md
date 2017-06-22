@@ -23,7 +23,7 @@ Shib-Idp
 	cd ./config/idp	
 	docker-compose build
 	docker run -it -v $(pwd):/ext-mount --rm idp_idp  init-idp.sh
-	# Backchannel + Cookie Passwort notieren!
+	Backchannel + Cookie Passwort notieren!
 	
 2. Docker-compose Umgebungsvariablen anpassen:
 	JETTY_BACKCHANNEL_SSL_KEYSTORE_PASSWORD: <Backchannel-Passwort aus Schritt 1>
