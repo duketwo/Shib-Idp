@@ -7,7 +7,7 @@ Shib-Idp
 
 #### Requirements
 
-1. Any docker supported OS which is capable of running Linux-based Docker containers 
+1. Any Docker supported OS which is capable of running Linux-based Docker containers 
 </br>(https://docs.docker.com/engine/installation/linux/debian/)
 2. Docker-Compose
 </br>(https://docs.docker.com/compose/install/)
