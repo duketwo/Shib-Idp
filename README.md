@@ -11,7 +11,7 @@ Shib-Idp
 2. Docker-Compose (https://docs.docker.com/compose/install/)
 3. Git(https://www.digitalocean.com/community/tutorials/how-to-install-git-on-debian-8)
 
-## FEATURES
+## Features
  - Jetty as Servlet/JSP-Container und Webserver for Shibboleth
  - HAProxy as proxy middlware including SSL offloading
  - phpLDAPadmin to administrate the LDAP database
