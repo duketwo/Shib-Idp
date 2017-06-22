@@ -46,7 +46,7 @@ Shib-Idp
 6. Attribute resolver konfigurieren
 7. Attribute filter konfigurieren
 
-#### Additional
+#### Cheatsheet
 Letsencrypt cert -> p12: 
 	openssl pkcs12 -export -out idp-browser.p12 -inkey privkey.pem -in cert.pem -certfile chain.pem
 	
@@ -59,7 +59,6 @@ LDAP credentials:
 	LDAP user: cn=admin,dc=shib
 	LDAP pw: toor
 	
-	
 Selbst signiertes TLS-Zertifikat erstellen -> p12
 	cd ./config/idp/credentials
 	#openssl genrsa -aes128 -out jetty.key
@@ -67,6 +66,7 @@ Selbst signiertes TLS-Zertifikat erstellen -> p12
 	openssl req  -nodes -new -x509  -keyout jetty.key -out jetty.crt
 	openssl pkcs12 -passout pass: -inkey jetty.key -in jetty.crt -export -out idp-browser.p12
 
+## References used
 
 
 ## License
