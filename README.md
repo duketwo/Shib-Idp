@@ -7,12 +7,12 @@ Shib-Idp
 
 #### Requirements
 
-1. Any docker supported OS which is capable of running Linux-based Docker containers
-(https://docs.docker.com/engine/installation/linux/debian/)
+1. Any docker supported OS which is capable of running Linux-based Docker containers 
+</br>(https://docs.docker.com/engine/installation/linux/debian/)
 2. Docker-Compose
-(https://docs.docker.com/compose/install/)
+</br>(https://docs.docker.com/compose/install/)
 3. Git
-(https://www.digitalocean.com/community/tutorials/how-to-install-git-on-debian-8)
+</br>(https://www.digitalocean.com/community/tutorials/how-to-install-git-on-debian-8)
 
 ## Features
  - Jetty as Servlet/JSP-Container und Webserver for Shibboleth
