@@ -35,7 +35,7 @@ Shib-Idp
 	
 4. Configure ldap.properties, idp.properties
 
-5. Add metadatenproviders:
+5. Add metadata providers:
 <br/>5.1. From local file:
 <br/><MetadataProvider id="sp-lr.shib"  xsi:type="FilesystemMetadataProvider" metadataFile="%{idp.home}/metadata/sp-metadata.xml"/>
 <br/>5.2. Remote via HTTPS:
