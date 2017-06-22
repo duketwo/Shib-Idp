@@ -118,4 +118,5 @@ fi
 
 chown -R openldap:openldap /var/lib/ldap/ /var/run/slapd/
 
-exec "$@"
+#exec "$@"
+slapd -d 32768 -u openldap -g openldap
