@@ -46,15 +46,13 @@ Shib-Idp
 
 ## Cheatsheet
 1. Letsencrypt cert -> p12: 
-	openssl pkcs12 -export -out idp-browser.p12 -inkey privkey.pem -in cert.pem -certfile chain.pem
+	</br>```openssl pkcs12 -export -out idp-browser.p12 -inkey privkey.pem -in cert.pem -certfile chain.pem```
 	
 2. Letsencrypt cert -> haproxy pem: 
+	</br>```cd haproxy/certs```
+	</br>```DOMAIN='yourdomain.net' bash -c 'cat /etc/letsencrypt/live/$DOMAIN/fullchain.pem /etc/letsencrypt/live/$DOMAIN/privkey.pem > $DOMAIN.pem'```
+	</br>```chmod -R go-rwx .```
 
-	cd haproxy/certs
-	DOMAIN='yourdomain.net' bash -c 'cat /etc/letsencrypt/live/$DOMAIN/fullchain.pem /etc/letsencrypt/live/$DOMAIN/privkey.pem > $DOMAIN.pem'
-	chmod -R go-rwx .
-
-	
 3. LDAP credentials:
 	LDAP user: cn=admin,dc=shib
 	LDAP pw: toor
