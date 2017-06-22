@@ -54,15 +54,13 @@ Shib-Idp
 	</br>```chmod -R go-rwx .```
 
 3. LDAP credentials:
-	LDAP user: cn=admin,dc=shib
-	LDAP pw: toor
+	</br>```LDAP user: cn=admin,dc=shib```
+	</br>```LDAP pw: toor```
 	
 4. Create selfsigned TLS cert and convert to p12 format:
-	cd ./config/idp/credentials
-	#openssl genrsa -aes128 -out jetty.key
-	#openssl req -new -x509 -newkey rsa:2048 -sha256 -key jetty.key -out jetty.crt
-	openssl req  -nodes -new -x509  -keyout jetty.key -out jetty.crt
-	openssl pkcs12 -passout pass: -inkey jetty.key -in jetty.crt -export -out idp-browser.p12
+	</br>```cd ./config/idp/credentials```
+	</br>```openssl req  -nodes -new -x509  -keyout jetty.key -out jetty.crt```
+	</br>```openssl pkcs12 -passout pass: -inkey jetty.key -in jetty.crt -export -out idp-browser.p12```
 
 ## References used
 https://github.com/dinkel/docker-openldap
