@@ -2,7 +2,6 @@ version: "3.1"
 
 services:
   idp:
-    #container_name: "idp"
     build: ./idp
     volumes:
       - './config/idp/:/external-mount/'
@@ -17,7 +16,6 @@ services:
 
   ldap:
    build: ./ldap
-   #container_name: "ldap"
    environment:
     SLAPD_ORGANIZATION: "Shibboleth United Ltd."
     SLAPD_DOMAIN: "shib"
@@ -28,11 +26,8 @@ services:
     - './config/ldap/static_config/:/etc/ldap'
     - './config/ldap/db/:/var/lib/ldap'
     - './ldap/prepopulate:/etc/ldap.dist/prepopulate'
-   #ports:
-    #- '389:389'
 
   phpldapadmin:
-    #container_name: "phpldapadmin"
     build: ./phpldapadmin
     ports:
       - '192.168.1.57:88:80'
@@ -43,17 +38,12 @@ services:
     restart: always
     depends_on:
       - "ldap"
+	  
   haproxy:
     restart: always
-    #privileged: true
-    #container_name: 'haproxy'
     image: haproxy
-    #environment:
-    #network_mode: "host"
     ports:
-     #- '80:80'
      - '192.168.1.57:443:443'
      - '192.168.1.57:8443:8443'
     volumes:
       - './haproxy/:/usr/local/etc/haproxy/'
-
