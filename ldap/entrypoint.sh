@@ -55,6 +55,10 @@ EOF
     base_string="BASE ${dc_string:1}"
 
     sed -i "s/^#BASE.*/${base_string}/g" /etc/ldap/ldap.conf
+	#echo "moduleload memberof.la" >> /etc/ldap/ldap.conf
+	#echo "index   objectClass   eq" >> /etc/ldap/ldap.conf
+	#echo "index   uid           eq,sub" >> /etc/ldap/ldap.conf
+	#echo "overlay memberof" >> /etc/ldap/ldap.conf
 
     if [[ -n "$SLAPD_CONFIG_PASSWORD" ]]; then
         password_hash=`slappasswd -s "${SLAPD_CONFIG_PASSWORD}"`
@@ -101,7 +105,6 @@ EOF
 			done
 		fi
 	fi
-
 
 
     chown -R openldap:openldap /etc/ldap/slapd.d/
