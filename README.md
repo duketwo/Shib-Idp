@@ -1,5 +1,6 @@
 Shib-Idp
 ===============
+<img src="http://aegisidentity.com/identity-software/wp-content/uploads/shib_square.jpg" width="300"/>
 ## Installation
 
 #### Requirements
