@@ -45,10 +45,10 @@ Shib-Idp
 7. Configure attribute filter
 
 ## Cheatsheet
-1. Letsencrypt cert -> p12: 
+1. Letsencrypt cert conversion to p12 format: 
 	</br>```openssl pkcs12 -export -out idp-browser.p12 -inkey privkey.pem -in cert.pem -certfile chain.pem```
 	
-2. Letsencrypt cert -> haproxy pem: 
+2. Letsencrypt cert conversion to haproxy pem: 
 	</br>```cd haproxy/certs```
 	</br>```DOMAIN='yourdomain.net' bash -c 'cat /etc/letsencrypt/live/$DOMAIN/fullchain.pem /etc/letsencrypt/live/$DOMAIN/privkey.pem > $DOMAIN.pem'```
 	</br>```chmod -R go-rwx .```
