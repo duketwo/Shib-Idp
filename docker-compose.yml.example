@@ -23,6 +23,7 @@ services:
     SLAPD_DOMAIN: "shib"
     SLAPD_PASSWORD: "toor"
     SLAPD_CONFIG_PASSWORD: "config"
+	SLAPD_ADDITIONAL_MODULES: "memberof"
    volumes:
     - './config/ldap/static_config/:/etc/ldap'
     - './config/ldap/db/:/var/lib/ldap'
