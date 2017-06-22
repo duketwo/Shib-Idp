@@ -8,10 +8,11 @@ Shib-Idp
 #### Requirements
 
 1. Any Docker supported OS which is capable of running Linux-based Docker containers 
+2. Docker
 </br>(https://docs.docker.com/engine/installation/linux/debian/)
-2. Docker-Compose
+3. Docker-Compose
 </br>(https://docs.docker.com/compose/install/)
-3. Git
+4. Git
 </br>(https://www.digitalocean.com/community/tutorials/how-to-install-git-on-debian-8)
 
 ## Features
