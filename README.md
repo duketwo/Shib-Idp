@@ -46,7 +46,7 @@ Shib-Idp
 6. Attribute resolver konfigurieren
 7. Attribute filter konfigurieren
 
-#### Cheatsheet
+## Cheatsheet
 Letsencrypt cert -> p12: 
 	openssl pkcs12 -export -out idp-browser.p12 -inkey privkey.pem -in cert.pem -certfile chain.pem
 	
