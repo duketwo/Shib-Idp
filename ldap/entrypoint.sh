@@ -96,15 +96,6 @@ EOF
              slapadd -n0 -F /etc/ldap/slapd.d -l "$module_file"
         done
     fi
-	
-	if [[ "$first_run" == "true" ]]; then
-		echo "Loading prepopulate data."
-		if [[ -d "/etc/ldap/prepopulate" ]]; then 
-			for file in `ls /etc/ldap/prepopulate/*.ldif`; do
-				slapadd -F /etc/ldap/slapd.d -l "$file"
-			done
-		fi
-	fi
 
 
     chown -R openldap:openldap /etc/ldap/slapd.d/
