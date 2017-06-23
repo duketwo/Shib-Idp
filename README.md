@@ -19,7 +19,7 @@ Shib-Idp
  - Jetty as Servlet/JSP-Container und Webserver for Shibboleth
  - HAProxy as proxy middlware including SSL offloading
  - phpLDAPadmin to administrate the LDAP database
- - OpenLDAP as directory service for Shibbleth
+ - OpenLDAP as directory service for Shibboleth
  - Shibbleth IdP provides Single Sign-On services 
 
 ## How to use
