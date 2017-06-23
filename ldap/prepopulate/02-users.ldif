@@ -1,6 +1,7 @@
 dn: uid=lriedel,ou=people,dc=shib
+gn: Larissa
 cn: Larissa Riedel
-sn: Larissa
+sn: Riedel
 gidnumber: 10000
 homedirectory: /home/users/lriedel
 objectClass: posixAccount
@@ -11,10 +12,12 @@ loginShell: /bin/bash
 uid: lriedel
 uidnumber: 1001
 userpassword: lriedel
+mail: lriedel@stud.hs-heilbronn.de
 
 dn: uid=dbader,ou=people,dc=shib
 cn: Daniel Bader
-sn: Daniel
+sn: Bader
+gn: Daniel
 gidnumber: 10000
 homedirectory: /home/users/dbader
 objectClass: posixAccount
@@ -25,3 +28,4 @@ loginShell: /bin/bash
 uid: dbader
 uidnumber: 1002
 userpassword: dbader
+mail: dbader@stud.hs-heilbronn.de
