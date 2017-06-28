@@ -18,7 +18,7 @@ Shib-Idp
 ## Features
  - Jetty as Servlet/JSP-Container und Webserver for Shibboleth
  - HAProxy as proxy middlware including SSL offloading
- - phpLDAPadmin to administrate the LDAP database
+ - phpLDAPadmin to administrate the LDAP directory
  - OpenLDAP as directory service for Shibboleth
  - Shibbleth IdP provides Single Sign-On services 
 
