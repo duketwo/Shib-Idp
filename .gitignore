@@ -40,3 +40,4 @@ httpd-metadata/html/
 httpd-metadata/
 docker-compose.yml
 haproxy/haproxy.cfg
+logs/
