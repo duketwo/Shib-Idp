@@ -39,10 +39,8 @@ Shib-Idp
 </br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;```# Track information about SPs logged into```
 </br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;```idp.session.trackSPSessions = true```
 4. Add metadata providers:
-<br/>5.1. From local file:
-<br/><MetadataProvider id="sp-lr.shib"  xsi:type="FilesystemMetadataProvider" metadataFile="%{idp.home}/metadata/sp-metadata.xml"/>
-<br/>5.2. Remote via HTTPS:
-<br/>
+<br/>4.1. From local file:
+<br/>4.2. Remote via HTTPS:
 5. Set a AttributeFilterPolicy within the ./config/idp/conf/attribute-filter.xml file:
 </br>
 ```xml
