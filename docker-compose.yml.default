@@ -31,7 +31,7 @@ services:
   phpldapadmin:
     build: ./phpldapadmin
     ports:
-      - '192.168.1.57:88:80'
+      - '88:80'
     environment:
       LDAP_SERVER_HOST: "ldap"
       LDAP_SERVER_PORT: "389"
@@ -44,7 +44,7 @@ services:
     restart: always
     image: haproxy
     ports:
-     - '192.168.1.57:443:443'
-     - '192.168.1.57:8443:8443'
+     - '443:443'
+     - '8443:8443'
     volumes:
       - './haproxy/:/usr/local/etc/haproxy/'
