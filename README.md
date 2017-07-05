@@ -44,43 +44,6 @@ Shib-Idp
 <br/>
 5. Set a AttributeFilterPolicy within the ./config/idp/conf/attribute-filter.xml file:
 </br>
-</br>5.1. Test:
-</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;```# Test```
-
-6. Configure attribute resolver
-7. Configure attribute filter
-
-## Cheatsheet
-1. Letsencrypt cert conversion to p12 format:
-	</br>```openssl pkcs12 -export -out idp-browser.p12 -inkey privkey.pem -in cert.pem -certfile chain.pem```
-
-2. Letsencrypt cert conversion to HAProxy pem:
-	</br>```cd haproxy/certs```
-	</br>```DOMAIN='yourdomain.net' bash -c 'cat /etc/letsencrypt/live/$DOMAIN/fullchain.pem /etc/letsencrypt/live/$DOMAIN/privkey.pem > $DOMAIN.pem'```
-	</br>```chmod -R go-rwx .```
-
-3. LDAP credentials:
-	</br>```LDAP user: cn=admin,dc=shib```
-	</br>```LDAP pw: toor```
-
-4. Create selfsigned TLS cert and convert to p12 format:
-	</br>```cd ./config/idp/credentials```
-	</br>```openssl req  -nodes -new -x509  -keyout jetty.key -out jetty.crt```
-	</br>```openssl pkcs12 -passout pass: -inkey jetty.key -in jetty.crt -export -out idp-browser.p12```
-
-5. LDAP memberOf search example:
-    </br>```(&(objectClass=*)(memberOf=cn=students,ou=groups,dc=shib))```
-	</br>```(&(objectClass=*)(memberOf=cn=professors,ou=groups,dc=shib))```
-
-## References used
-https://github.com/dinkel/docker-openldap
-</br>https://github.com/dinkel/docker-phpldapadmin
-</br>https://github.com/Unicon/shibboleth-idp-dockerized
-
-## License
-
-[MIT](LICENSE)
-
 ```xml
 <AttributeFilterPolicy id="https://sp.example-federation.us">
   <PolicyRequirementRule xsi:type="Requester" value="https://sp.example-federation.us" />
@@ -107,3 +70,55 @@ https://github.com/dinkel/docker-openldap
   </AttributeRule>
 </AttributeFilterPolicy>
 ```
+
+6. Configure attribute resolver
+7. Configure attribute filter
+
+## Cheatsheet
+1. Letsencrypt cert conversion to p12 format:
+	</br>```openssl pkcs12 -export -out idp-browser.p12 -inkey privkey.pem -in cert.pem -certfile chain.pem```
+
+2. Letsencrypt cert conversion to HAProxy pem:
+	</br>```cd haproxy/certs```
+	</br>```DOMAIN='yourdomain.net' bash -c 'cat /etc/letsencrypt/live/$DOMAIN/fullchain.pem /etc/letsencrypt/live/$DOMAIN/privkey.pem > $DOMAIN.pem'```
+	</br>```chmod -R go-rwx .```
+
+3. LDAP credentials:
+	</br>```LDAP user: cn=admin,dc=shib```
+	</br>```LDAP pw: toor```
+
+4. Create selfsigned TLS cert and convert to p12 format:
+	</br>```cd ./config/idp/credentials```
+	</br>```openssl req  -nodes -new -x509  -keyout jetty.key -out jetty.crt```
+	</br>```openssl pkcs12 -passout pass: -inkey jetty.key -in jetty.crt -export -out idp-browser.p12```
+
+5. LDAP memberOf search example:
+  </br>```(&(objectClass=*)(memberOf=cn=students,ou=groups,dc=shib))```
+	</br>```(&(objectClass=*)(memberOf=cn=professors,ou=groups,dc=shib))```
+
+6. Disable IdP Assertion encryption: (./config/idp/conf/relying-party.xml)
+<br/>
+```xml
+    <util:list id="shibboleth.RelyingPartyOverrides">
+        <!--
+        Override example that identifies a single RP by name and configures it
+        for SAML 2 SSO without encryption. This is a common "vendor" scenario.
+        -->
+        <bean parent="RelyingPartyByName" c:relyingPartyIds="https://sp.example-federation.us">
+            <property name="profileConfigurations">
+                <list>
+                    <bean parent="SAML2.SSO" p:encryptAssertions="false" />
+                </list>
+            </property>
+        </bean>
+    </util:list>
+```
+
+## References used
+https://github.com/dinkel/docker-openldap
+</br>https://github.com/dinkel/docker-phpldapadmin
+</br>https://github.com/Unicon/shibboleth-idp-dockerized
+
+## License
+
+[MIT](LICENSE)
