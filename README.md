@@ -45,7 +45,7 @@ Shib-Idp
 <br/>
 5. Set a AttributeFilterPolicy within the ./config/idp/conf/attribute-filter.xml file:
 </br>
-```
+```xml
 <AttributeFilterPolicy id="https://sp.example-federation.us">
   <PolicyRequirementRule xsi:type="Requester" value="https://sp.example-federation.us" />
   <AttributeRule attributeID="uid">
@@ -72,8 +72,8 @@ Shib-Idp
 </AttributeFilterPolicy>
 ```
 
-5. Configure attribute resolver
-6. Configure attribute filter
+6. Configure attribute resolver
+7. Configure attribute filter
 
 ## Cheatsheet
 1. Letsencrypt cert conversion to p12 format:
