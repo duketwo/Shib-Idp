@@ -41,34 +41,11 @@ Shib-Idp
 4. Add metadata providers:
 <br/>4.1. From local file:
 <br/>4.2. Remote via HTTPS:
+<br/>
 5. Set a AttributeFilterPolicy within the ./config/idp/conf/attribute-filter.xml file:
 </br>
-```xml
-<AttributeFilterPolicy id="https://sp.example-federation.us">
-  <PolicyRequirementRule xsi:type="Requester" value="https://sp.example-federation.us" />
-  <AttributeRule attributeID="uid">
-    <PermitValueRule xsi:type="ANY" />
-  </AttributeRule>
-  <AttributeRule attributeID="mail">
-    <PermitValueRule xsi:type="ANY" />
-  </AttributeRule>
-  <AttributeRule attributeID="givenName">
-    <PermitValueRule xsi:type="ANY" />
-  </AttributeRule>
-  <AttributeRule attributeID="surname">
-    <PermitValueRule xsi:type="ANY" />
-  </AttributeRule>
-  <AttributeRule attributeID="eduPersonPrincipalName">
-    <PermitValueRule xsi:type="ANY" />
-  </AttributeRule>
-  <AttributeRule attributeID="memberOf">
-    <PermitValueRule xsi:type="ANY" />
-  </AttributeRule>
-  <AttributeRule attributeID="eduPersonAffiliation">
-    <PermitValueRule xsi:type="ANY" />
-  </AttributeRule>
-</AttributeFilterPolicy>
-```
+</br>5.1. Test:
+</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;```# Test```
 
 6. Configure attribute resolver
 7. Configure attribute filter
@@ -103,3 +80,30 @@ https://github.com/dinkel/docker-openldap
 ## License
 
 [MIT](LICENSE)
+
+```xml
+<AttributeFilterPolicy id="https://sp.example-federation.us">
+  <PolicyRequirementRule xsi:type="Requester" value="https://sp.example-federation.us" />
+  <AttributeRule attributeID="uid">
+    <PermitValueRule xsi:type="ANY" />
+  </AttributeRule>
+  <AttributeRule attributeID="mail">
+    <PermitValueRule xsi:type="ANY" />
+  </AttributeRule>
+  <AttributeRule attributeID="givenName">
+    <PermitValueRule xsi:type="ANY" />
+  </AttributeRule>
+  <AttributeRule attributeID="surname">
+    <PermitValueRule xsi:type="ANY" />
+  </AttributeRule>
+  <AttributeRule attributeID="eduPersonPrincipalName">
+    <PermitValueRule xsi:type="ANY" />
+  </AttributeRule>
+  <AttributeRule attributeID="memberOf">
+    <PermitValueRule xsi:type="ANY" />
+  </AttributeRule>
+  <AttributeRule attributeID="eduPersonAffiliation">
+    <PermitValueRule xsi:type="ANY" />
+  </AttributeRule>
+</AttributeFilterPolicy>
+```
