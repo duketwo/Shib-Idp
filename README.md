@@ -7,7 +7,7 @@ Shib-Idp
 
 #### Requirements
 
-1. Any Docker supported OS which is capable of running Linux-based Docker containers 
+1. Any Docker supported OS which is capable of running Linux-based Docker containers
 2. Docker
 </br>(https://docs.docker.com/engine/installation/linux/debian/)
 3. Docker-Compose
@@ -20,36 +20,33 @@ Shib-Idp
  - HAProxy as proxy middlware including SSL offloading
  - phpLDAPadmin to administrate the LDAP directory
  - OpenLDAP as directory service for Shibboleth
- - Shibbleth IdP provides Single Sign-On services 
+ - Shibbleth IdP provides Single Sign-On services
 
 ## How to use
-1. Execute init.sh: ```chmod +x ./init.sh && ./init.sh```
 
-2. Create initial base configuration:
-	</br>```cd ./config/idp```
-	</br>```docker-compose build```
-	</br>```docker run -it -v $(pwd):/ext-mount --rm idp_idp  init-idp.sh```
+1. Create initial base configuration:
+  </br>```chmod +x ./init.sh && ./init.sh```
 	</br>Create a note of the backchannel and cookie password!
-	
-3. Edit docker-compose environment variables:
-	</br>```JETTY_BACKCHANNEL_SSL_KEYSTORE_PASSWORD: <Backchannel-Passwort from step 1>```
-	
-4. Configure ldap.properties, idp.properties
 
-5. Add metadata providers:
+2. Edit docker-compose environment variables:
+	</br>```JETTY_BACKCHANNEL_SSL_KEYSTORE_PASSWORD: <Backchannel-Passwort from step 1>```
+
+3. Configure ldap.properties, idp.properties
+
+4. Add metadata providers:
 <br/>5.1. From local file:
 <br/><MetadataProvider id="sp-lr.shib"  xsi:type="FilesystemMetadataProvider" metadataFile="%{idp.home}/metadata/sp-metadata.xml"/>
 <br/>5.2. Remote via HTTPS:
-<br/>	
+<br/>
 
-6. Configure attribute resolver
-7. Configure attribute filter
+5. Configure attribute resolver
+6. Configure attribute filter
 
 ## Cheatsheet
-1. Letsencrypt cert conversion to p12 format: 
+1. Letsencrypt cert conversion to p12 format:
 	</br>```openssl pkcs12 -export -out idp-browser.p12 -inkey privkey.pem -in cert.pem -certfile chain.pem```
-	
-2. Letsencrypt cert conversion to haproxy pem: 
+
+2. Letsencrypt cert conversion to HAProxy pem:
 	</br>```cd haproxy/certs```
 	</br>```DOMAIN='yourdomain.net' bash -c 'cat /etc/letsencrypt/live/$DOMAIN/fullchain.pem /etc/letsencrypt/live/$DOMAIN/privkey.pem > $DOMAIN.pem'```
 	</br>```chmod -R go-rwx .```
@@ -57,13 +54,13 @@ Shib-Idp
 3. LDAP credentials:
 	</br>```LDAP user: cn=admin,dc=shib```
 	</br>```LDAP pw: toor```
-	
+
 4. Create selfsigned TLS cert and convert to p12 format:
 	</br>```cd ./config/idp/credentials```
 	</br>```openssl req  -nodes -new -x509  -keyout jetty.key -out jetty.crt```
 	</br>```openssl pkcs12 -passout pass: -inkey jetty.key -in jetty.crt -export -out idp-browser.p12```
-	
-5. LDAP memberof search example:
+
+5. LDAP memberOf search example:
     </br>```(&(objectClass=*)(memberOf=cn=students,ou=groups,dc=shib))```
 	</br>```(&(objectClass=*)(memberOf=cn=professors,ou=groups,dc=shib))```
 
