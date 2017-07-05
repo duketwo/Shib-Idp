@@ -44,11 +44,7 @@ Shib-Idp
 <br/>
 5. Set a AttributeFilterPolicy within the ./config/idp/conf/attribute-filter.xml file:
 </br>
-```
-Code
-More Code
-```
-```xml
+ ```xml
 <AttributeFilterPolicy id="https://sp.example-federation.us">
   <PolicyRequirementRule xsi:type="Requester" value="https://sp.example-federation.us" />
   <AttributeRule attributeID="uid">
