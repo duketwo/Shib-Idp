@@ -15,7 +15,7 @@ Shib-Idp
 4. Git
 </br>(https://www.digitalocean.com/community/tutorials/how-to-install-git-on-debian-8)
 
-## Features
+## Featuring
  - Jetty as Servlet/JSP-Container und Webserver for Shibboleth
  - HAProxy as proxy middlware including SSL offloading
  - phpLDAPadmin to administrate the LDAP directory
@@ -35,7 +35,9 @@ Shib-Idp
 </br>3.1. Set the IdP scope:
 </br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;```# Set the scope used in the attribute resolver for scoped attributes```
 </br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;```idp.scope= example.org```
-
+</br>3.2. Configure trackSPSessions attribute to allow SLO (Single-Logout):
+</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;```# Track information about SPs logged into```
+</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;```idp.session.trackSPSessions = true```
 4. Add metadata providers:
 <br/>5.1. From local file:
 <br/><MetadataProvider id="sp-lr.shib"  xsi:type="FilesystemMetadataProvider" metadataFile="%{idp.home}/metadata/sp-metadata.xml"/>
