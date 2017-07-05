@@ -7,4 +7,4 @@ rm ./haproxy/haproxy.cfg
 cp ./defaultconf/haproxy/haproxy.cfg.default ./haproxy/haproxy.cfg
 docker-compose run --rm -v "$(pwd)/config/idp:/ext-mount" idp init-idp.sh
 rm ./config/idp/conf/ldap.properties
-cp ./defaultconf/haproxy/ldap.properties.default ./config/idp/conf/ldap.properties
+cp ./defaultconf/ldap.properties.default ./config/idp/conf/ldap.properties
