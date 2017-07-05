@@ -43,6 +43,34 @@ Shib-Idp
 <br/><MetadataProvider id="sp-lr.shib"  xsi:type="FilesystemMetadataProvider" metadataFile="%{idp.home}/metadata/sp-metadata.xml"/>
 <br/>5.2. Remote via HTTPS:
 <br/>
+5. Set a AttributeFilterPolicy within the ./config/idp/conf/attribute-filter.xml file:
+</br>
+```
+<AttributeFilterPolicy id="https://sp.example-federation.us">
+  <PolicyRequirementRule xsi:type="Requester" value="https://sp.example-federation.us" />
+  <AttributeRule attributeID="uid">
+    <PermitValueRule xsi:type="ANY" />
+  </AttributeRule>
+  <AttributeRule attributeID="mail">
+    <PermitValueRule xsi:type="ANY" />
+  </AttributeRule>
+  <AttributeRule attributeID="givenName">
+    <PermitValueRule xsi:type="ANY" />
+  </AttributeRule>
+  <AttributeRule attributeID="surname">
+    <PermitValueRule xsi:type="ANY" />
+  </AttributeRule>
+  <AttributeRule attributeID="eduPersonPrincipalName">
+    <PermitValueRule xsi:type="ANY" />
+  </AttributeRule>
+  <AttributeRule attributeID="memberOf">
+    <PermitValueRule xsi:type="ANY" />
+  </AttributeRule>
+  <AttributeRule attributeID="eduPersonAffiliation">
+    <PermitValueRule xsi:type="ANY" />
+  </AttributeRule>
+</AttributeFilterPolicy>
+```
 
 5. Configure attribute resolver
 6. Configure attribute filter
