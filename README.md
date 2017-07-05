@@ -31,7 +31,10 @@ Shib-Idp
 2. Edit docker-compose environment variables:
 	</br>```JETTY_BACKCHANNEL_SSL_KEYSTORE_PASSWORD: <Backchannel-Passwort from step 1>```
 
-3. Configure ldap.properties, idp.properties
+3. Configure ./config/idp/conf/idp.properties file
+</br>3.1. Set the IdP scope:
+</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;```# Set the scope used in the attribute resolver for scoped attributes```
+</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;```idp.scope= example.org```
 
 4. Add metadata providers:
 <br/>5.1. From local file:
