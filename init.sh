@@ -1,6 +1,7 @@
 #!/bin/sh
 rm -r ./config/idp
 rm -r ./config/ldap
+rm -r ./config/mysql
 rm ./docker-compose.yml
 cp ./defaultconf/docker-compose.yml.default ./docker-compose.yml
 rm ./haproxy/haproxy.cfg

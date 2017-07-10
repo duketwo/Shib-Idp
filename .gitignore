@@ -35,6 +35,7 @@ vendor/pkg/
 hack/integration-cli-on-swarm/integration-cli-on-swarm
 config/idp/
 config/ldap/
+config/mysql/
 haproxy/certs/
 httpd-metadata/html/
 httpd-metadata/

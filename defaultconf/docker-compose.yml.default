@@ -48,3 +48,20 @@ services:
      - '8443:8443'
     volumes:
       - './haproxy/:/usr/local/etc/haproxy/'
+
+  db:
+    image: mysql/mysql-server:5.7
+    volumes:
+      - './config/mysql:/var/lib/mysql'
+      - './mysql:/docker-entrypoint-initdb.d/'
+    restart: always
+    environment:
+     MYSQL_ROOT_PASSWORD: "toor"
+     MYSQL_DATABASE: "shib"
+     MYSQL_ROOT_HOST: "%"
+
+  adminer:
+   restart: always
+   image: adminer
+   ports:
+    - 89:808
