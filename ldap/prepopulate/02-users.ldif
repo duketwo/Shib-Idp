@@ -29,3 +29,19 @@ uid: dbader
 uidnumber: 1002
 userpassword: dbader
 mail: dbader@stud.hs-heilbronn.de
+
+dn: uid=amayer,ou=people,dc=shib
+cn: Andreas Mayer
+sn: Mayer
+gn: Andreas
+gidnumber: 10000
+homedirectory: /home/users/amayer
+objectClass: posixAccount
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+loginShell: /bin/bash
+uid: amayer
+uidnumber: 1003
+userpassword: amayer
+mail: amayer@hs-heilbronn.de

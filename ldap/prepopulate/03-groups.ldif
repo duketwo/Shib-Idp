@@ -7,3 +7,4 @@ dn: cn=professors,ou=groups,dc=shib
 cn: professors
 objectClass: groupOfNames
 member: uid=dbader,ou=people,dc=shib
+member: uid=amayer,ou=people,dc=shib

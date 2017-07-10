@@ -15,7 +15,7 @@ mkdir -p /ext-mount/conf/
 cd ..
 cp -r credentials/ /ext-mount/
 cp -r metadata/ /ext-mount/
-cp conf/{attribute-resolver.xml,attribute-filter.xml,cas-protocol.xml,idp.properties,ldap.properties,metadata-providers.xml,relying-party.xml,saml-nameid.xml} /ext-mount/conf/
+cp conf/{attribute-resolver.xml,attribute-filter.xml,cas-protocol.xml,idp.properties,ldap.properties,metadata-providers.xml,relying-party.xml,saml-nameid.xml,global.xml} /ext-mount/conf/
 
 cp -r views/ /ext-mount/
 mkdir /ext-mount/webapp/

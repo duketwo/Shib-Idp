@@ -1,5 +1,5 @@
 FROM debian:latest
-	
+
 #
 # Umgebungsvariablen setzen
 #
@@ -8,7 +8,9 @@ FROM debian:latest
 	ENV idp_version 3.3.1
 	ENV idp_hash 8bd852dcdc7e6729ee645c0374a3c476b152fa24506fb86ffec33dfd190e607c
 	ENV dta_hash 2f547074b06952b94c35631398f36746820a7697
-	
+	ENV hcp_hash ff6d65f0c706c757746da0285003fb9e10278aa68408b9032910707766174556
+	ENV mysqlcj_hash 12b98a70b1d899e3718ccb10acb1842820ddd132559ab51c9168ab495f23d8d7
+
 	ENV JETTY_HOME=/opt/jetty-home \
     JETTY_BASE=/opt/shib-jetty-base \
     JETTY_MAX_HEAP=2048m \
@@ -36,7 +38,7 @@ FROM debian:latest
 		&& tar -zxvf jetty-distribution-$jetty_version.tar.gz -C /opt \
 		&& rm jetty-distribution-$jetty_version.tar.gz \
 		&& ln -s /opt/jetty-distribution-$jetty_version/ /opt/jetty-home
-	
+
 #
 # Jetty konfigurieren
 #
@@ -46,7 +48,7 @@ FROM debian:latest
 		&& cd /opt/shib-jetty-base \
 		&& touch start.ini \
 		&& java -jar ../jetty-home/start.jar --add-to-startd=http,https,deploy,ext,annotations,jstl
-	
+
 #
 # Jetty SSL/SOAP Plugin installieren und hash verfizieren
 #
@@ -55,7 +57,7 @@ FROM debian:latest
 		&& wget https://build.shibboleth.net/nexus/content/repositories/releases/net/shibboleth/utilities/jetty9/jetty9-dta-ssl/1.0.0/jetty9-dta-ssl-1.0.0.jar \
 		&& echo "$dta_hash  jetty9-dta-ssl-1.0.0.jar" | sha1sum -c - \
 		&& mv jetty9-dta-ssl-1.0.0.jar /opt/shib-jetty-base/lib/ext/
-	
+
 #
 # Shibboleth Idp installieren und hash verifizieren
 #
@@ -66,6 +68,25 @@ FROM debian:latest
 		&& tar -zxvf  shibboleth-identity-provider-$idp_version.tar.gz -C /opt \
 		&& rm /shibboleth-identity-provider-$idp_version.tar.gz \
 		&& ln -s /opt/shibboleth-identity-provider-$idp_version/ /opt/shibboleth-idp
+
+
+#
+# MySQL Connector/J 6.0.6 installieren und hash verifizieren
+#
+
+		RUN cd / \
+		&& wget http://central.maven.org/maven2/mysql/mysql-connector-java/6.0.6/mysql-connector-java-6.0.6.jar \
+		&& echo "$mysqlcj_hash  mysql-connector-java-6.0.6.jar" | sha256sum -c - \
+		&& cp mysql-connector-java-6.0.6.jar /opt/shibboleth-idp/webapp/WEB-INF/lib
+
+#
+# HikariCP/2.6.3 installieren und hash verifizieren
+#
+
+	RUN cd / \
+		&& wget http://central.maven.org/maven2/com/zaxxer/HikariCP/2.6.3/HikariCP-2.6.3.jar \
+		&& echo "$hcp_hash  HikariCP-2.6.3.jar" | sha256sum -c - \
+		&& cp HikariCP-2.6.3.jar /opt/shibboleth-idp/webapp/WEB-INF/lib
 
 #
 # Jetty user hinzufügen mit /bin/false bash, gruppe = jetty
@@ -87,7 +108,7 @@ FROM debian:latest
 	COPY bin/ /usr/local/bin/
 	COPY opt/shib-jetty-base/ /opt/shib-jetty-base/
 	COPY opt/shibboleth-idp/ /opt/shibboleth-idp/
-	
+
 #
 # Owner und Rechte setzen von Konfigurationsdateien
 #
@@ -96,8 +117,8 @@ FROM debian:latest
 		&& chmod -R 640 /opt/shib-jetty-base \
 		&& chmod -R 750 /opt/shibboleth-idp/bin \
 		&& chmod 750 /usr/local/bin/run-jetty.sh /usr/local/bin/init-idp.sh
-		
+
 # Expose 4443 (One-way TLS) und 8443 (Two-way TLS)
 EXPOSE 4443 8443
 
-CMD ["run-jetty.sh"]	
+CMD ["run-jetty.sh"]

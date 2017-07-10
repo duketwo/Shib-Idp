@@ -1,10 +1,10 @@
 
 USE shib;
-CREATE TABLE storagerecords (
-  context varchar(255) NOT NULL,
-  id varchar(255) NOT NULL,
-  expires bigint DEFAULT NULL,
-  value text NOT NULL,
-  version bigint NOT NULL,
-  PRIMARY KEY (context, id)
-);
+CREATE TABLE `StorageRecords` (
+  `context` varchar(255) NOT NULL,
+  `id` varchar(255) NOT NULL,
+  `expires` bigint(20) DEFAULT NULL,
+  `value` longtext NOT NULL,
+  `version` bigint(20) NOT NULL,
+  PRIMARY KEY (`context`,`id`)
+)
