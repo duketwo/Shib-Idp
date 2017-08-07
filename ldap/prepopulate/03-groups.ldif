@@ -8,3 +8,13 @@ cn: professors
 objectClass: groupOfNames
 member: uid=dbader,ou=people,dc=shib
 member: uid=amayer,ou=people,dc=shib
+
+dn: cn=employee,ou=groups,dc=shib
+cn: employee
+objectClass: groupOfNames
+member: uid=dbader,ou=people,dc=shib
+
+dn: cn=faculty-it,ou=groups,dc=shib
+cn: faculty-it
+objectClass: groupOfNames
+member: uid=dbader,ou=people,dc=shib
