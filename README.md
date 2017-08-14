@@ -44,32 +44,7 @@ Shib-Idp
 <br/>
 5. Set a AttributeFilterPolicy within the ./config/idp/conf/attribute-filter.xml file:
 </br>
- ```xml
-<AttributeFilterPolicy id="https://sp.example-federation.us">
-  <PolicyRequirementRule xsi:type="Requester" value="https://sp.example-federation.us" />
-  <AttributeRule attributeID="uid">
-    <PermitValueRule xsi:type="ANY" />
-  </AttributeRule>
-  <AttributeRule attributeID="mail">
-    <PermitValueRule xsi:type="ANY" />
-  </AttributeRule>
-  <AttributeRule attributeID="givenName">
-    <PermitValueRule xsi:type="ANY" />
-  </AttributeRule>
-  <AttributeRule attributeID="surname">
-    <PermitValueRule xsi:type="ANY" />
-  </AttributeRule>
-  <AttributeRule attributeID="eduPersonPrincipalName">
-    <PermitValueRule xsi:type="ANY" />
-  </AttributeRule>
-  <AttributeRule attributeID="memberOf">
-    <PermitValueRule xsi:type="ANY" />
-  </AttributeRule>
-  <AttributeRule attributeID="eduPersonAffiliation">
-    <PermitValueRule xsi:type="ANY" />
-  </AttributeRule>
-</AttributeFilterPolicy>
-```
+
 
 6. Configure attribute resolver
 7. Configure attribute filter
@@ -98,6 +73,16 @@ Shib-Idp
 
 6. Disable IdP Assertion encryption: (./config/idp/conf/relying-party.xml)
 <br/>
+
+
+## References used
+https://github.com/dinkel/docker-openldap
+</br>https://github.com/dinkel/docker-phpldapadmin
+</br>https://github.com/Unicon/shibboleth-idp-dockerized
+
+## XML listings
+
+1.
 ```xml
     <util:list id="shibboleth.RelyingPartyOverrides">
         <!--
@@ -111,13 +96,37 @@ Shib-Idp
                 </list>
             </property>
         </bean>
-    </util:list>
+    </ut
 ```
-
-## References used
-https://github.com/dinkel/docker-openldap
-</br>https://github.com/dinkel/docker-phpldapadmin
-</br>https://github.com/Unicon/shibboleth-idp-dockerized
+	
+2.
+	
+```xml
+<AttributeFilterPolicy id="https://sp.example-federation.us">
+  <PolicyRequirementRule xsi:type="Requester" value="https://sp.example-federation.us" />
+  <AttributeRule attributeID="uid">
+    <PermitValueRule xsi:type="ANY" />
+  </AttributeRule>
+  <AttributeRule attributeID="mail">
+    <PermitValueRule xsi:type="ANY" />
+  </AttributeRule>
+  <AttributeRule attributeID="givenName">
+    <PermitValueRule xsi:type="ANY" />
+  </AttributeRule>
+  <AttributeRule attributeID="surname">
+    <PermitValueRule xsi:type="ANY" />
+  </AttributeRule>
+  <AttributeRule attributeID="eduPersonPrincipalName">
+    <PermitValueRule xsi:type="ANY" />
+  </AttributeRule>
+  <AttributeRule attributeID="memberOf">
+    <PermitValueRule xsi:type="ANY" />
+  </AttributeRule>
+  <AttributeRule attributeID="eduPersonAffiliation">
+    <PermitValueRule xsi:type="ANY" />
+  </AttributeRule>
+</AttributeFilterPolicy>
+```
 
 ## License
 
