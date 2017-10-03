@@ -43,6 +43,7 @@ Shib-Idp
 5. Set a AttributeFilterPolicy within the ./config/idp/conf/attribute-filter.xml file.
 </br>
 6. Configure attribute resolver
+</br>
 7. Configure attribute filter
 
 ## Cheatsheet
