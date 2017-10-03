@@ -40,7 +40,7 @@ Shib-Idp
 </br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;```idp.session.trackSPSessions = true```
 4. Add metadata providers
 <br/>
-5. Set a AttributeFilterPolicy within the ./config/idp/conf/attribute-filter.xml file:
+5. Set a AttributeFilterPolicy within the ./config/idp/conf/attribute-filter.xml file.
 </br>
 6. Configure attribute resolver
 7. Configure attribute filter
