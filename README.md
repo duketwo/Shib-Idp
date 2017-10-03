@@ -38,9 +38,7 @@ Shib-Idp
 </br>3.2. Configure trackSPSessions attribute to allow SLO (Single-Logout):
 </br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;```# Track information about SPs logged into```
 </br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;```idp.session.trackSPSessions = true```
-4. Add metadata providers:
-<br/>4.1. From local file:
-<br/>4.2. Remote via HTTPS:
+4. Add metadata providers
 <br/>
 5. Set a AttributeFilterPolicy within the ./config/idp/conf/attribute-filter.xml file:
 </br>
