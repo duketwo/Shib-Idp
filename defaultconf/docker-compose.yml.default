@@ -10,7 +10,7 @@ services:
       JETTY_BROWSER_SSL_KEYSTORE_PASSWORD: ""
       JETTY_BACKCHANNEL_SSL_KEYSTORE_PASSWORD: back
     ports:
-      - '443:443'
+      - '443:4443'
       - '8443:8443'
     restart: always
     depends_on:
