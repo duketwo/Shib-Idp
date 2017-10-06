@@ -23,10 +23,10 @@ FROM debian:latest
 #
 # Zulu OpenJDK binaries von offiziellem Repo installieren
 #
+	RUN apt-get -qq update && apt-get install -my wget gnupg
 	RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 0x219BD9C9
 	RUN echo "deb http://repos.azulsystems.com/debian stable  main" >> /etc/apt/sources.list.d/zulu.list
-	RUN apt-get -qq update
-	RUN apt-get -y install zulu-8 wget tar nano
+	RUN apt-get -y install zulu-8 tar nano
 
 
 #
