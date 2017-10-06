@@ -9,6 +9,9 @@ services:
     environment:
       JETTY_BROWSER_SSL_KEYSTORE_PASSWORD: ""
       JETTY_BACKCHANNEL_SSL_KEYSTORE_PASSWORD: back
+    ports:
+     - '443:443'
+     - '8443:8443'	  
     restart: always
     depends_on:
       - "ldap"
@@ -41,15 +44,6 @@ services:
     depends_on:
      - "ldap"
 
-  haproxy:
-    restart: always
-    image: haproxy
-    ports:
-     - '443:443'
-     - '8443:8443'
-    volumes:
-      - './haproxy/:/usr/local/etc/haproxy/'
-
   db:
     image: mysql/mysql-server:5.7
     volumes:
@@ -65,4 +59,4 @@ services:
    restart: always
    image: adminer
    ports:
-    - 89:808
+    - '89:808'
