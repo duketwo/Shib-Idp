@@ -11,7 +11,7 @@ services:
       JETTY_BACKCHANNEL_SSL_KEYSTORE_PASSWORD: back
     ports:
      - '443:443'
-     - '8443:8443'	  
+     - '8443:8443'
     restart: always
     depends_on:
       - "ldap"
