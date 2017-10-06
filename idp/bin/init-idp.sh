@@ -11,12 +11,13 @@ echo "Please complete the following for your IdP environment:"
 ./build.sh -Didp.target.dir=/opt/shibboleth-idp init gethostname askscope metadata-gen
 
 mkdir -p /ext-mount/conf/
+mkdir -p /ext-mount/conf/intercept/
 
 cd ..
 cp -r credentials/ /ext-mount/
 cp -r metadata/ /ext-mount/
 cp conf/{attribute-resolver.xml,attribute-filter.xml,cas-protocol.xml,idp.properties,ldap.properties,metadata-providers.xml,relying-party.xml,saml-nameid.xml,global.xml} /ext-mount/conf/
-cp conf/intercept{context-check-intercept-config.xml} /ext-mount/conf/intercept
+cp conf/intercept/{context-check-intercept-config.xml} /ext-mount/conf/intercept/
 
 cp -r views/ /ext-mount/
 mkdir /ext-mount/webapp/
