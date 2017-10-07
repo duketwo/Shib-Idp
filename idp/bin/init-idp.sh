@@ -16,7 +16,7 @@ mkdir -p /ext-mount/conf/intercept/
 cd ..
 cp -r credentials/ /ext-mount/
 cp -r metadata/ /ext-mount/
-cp conf/{attribute-resolver.xml,attribute-filter.xml,cas-protocol.xml,idp.properties,ldap.properties,metadata-providers.xml,relying-party.xml,saml-nameid.xml,global.xml} /ext-mount/conf/
+cp conf/{attribute-resolver.xml,attribute-filter.xml,idp.properties,ldap.properties,metadata-providers.xml,relying-party.xml,global.xml} /ext-mount/conf/
 cp conf/intercept/context-check-intercept-config.xml /ext-mount/conf/intercept/context-check-intercept-config.xml
 
 cp -r views/ /ext-mount/
