@@ -58,4 +58,4 @@ services:
    restart: always
    image: adminer
    ports:
-    - '89:808'
+    - '89:8080'
