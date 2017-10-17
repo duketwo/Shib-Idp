@@ -78,7 +78,7 @@ https://github.com/dinkel/docker-openldap
 
 ## XML listings
 
-1.
+1. Disable assertion encryption
 ```xml
     <util:list id="shibboleth.RelyingPartyOverrides">
         <!--
@@ -95,7 +95,7 @@ https://github.com/dinkel/docker-openldap
     </ut
 ```
 	
-2.
+2. AttributeFilterPolicy example
 	
 ```xml
 <AttributeFilterPolicy id="https://sp.example-federation.us">
